@@ -1,0 +1,96 @@
+diff --git a/script.js b/script.js
+index 1662d2ba16725b1658b8d575060179df3ea7f850..32ba74b7954bdb1d8b2450c796ebf6619ec4a8c0 100644
+--- a/script.js
++++ b/script.js
+@@ -1,64 +1,33 @@
++const menuButton = document.querySelector('.menu-toggle');
++const navigation = document.querySelector('.site-nav');
+ 
+-function createMediaElement(file) {
+-  const url = URL.createObjectURL(file);
+-  if (file.type.startsWith('video')) {
+-    const video = document.createElement('video');
+-    video.src = url;
+-    video.controls = true;
+-    video.muted = true;
+-    video.playsInline = true;
+-    return video;
+-  }
+-  const img = document.createElement('img');
+-  img.src = url;
+-  img.alt = file.name;
+-  return img;
+-}
+-
+-function attachUpload(inputId, previewId) {
+-  const input = document.getElementById(inputId);
+-  const preview = document.getElementById(previewId);
+-  if (!input || !preview) return;
+-
+-  input.addEventListener('change', (event) => {
+-    const files = Array.from(event.target.files || []);
+-    preview.innerHTML = '';
+-
+-    if (!files.length) {
+-      preview.textContent = 'Add media';
+-      preview.classList.add('placeholder');
+-      return;
+-    }
++menuButton?.addEventListener('click', () => {
++  const isOpen = navigation.classList.toggle('open');
++  menuButton.setAttribute('aria-expanded', String(isOpen));
++});
+ 
+-    preview.classList.remove('placeholder');
+-    files.forEach((file) => {
+-      const mediaEl = createMediaElement(file);
+-      mediaEl.classList.add('thumb');
+-      preview.appendChild(mediaEl);
+-    });
++navigation?.querySelectorAll('a').forEach((link) => {
++  link.addEventListener('click', () => {
++    navigation.classList.remove('open');
++    menuButton?.setAttribute('aria-expanded', 'false');
+   });
+-}
+-
+-
+-document.querySelectorAll('[data-slideshow]').forEach((slideshow) => {
+-  const slides = Array.from(slideshow.querySelectorAll('[data-slide-item]'));
+-  const controls = slideshow.querySelectorAll('[data-slide]');
+-  if (!slides.length) return;
++});
+ 
+-  let index = 0;
+-  const updateSlides = () => {
+-    slides.forEach((slide, i) => {
+-      slide.classList.toggle('is-active', i === index);
+-    });
+-  };
++document.querySelectorAll('[data-year]').forEach((year) => {
++  year.textContent = new Date().getFullYear();
++});
+ 
+-  controls.forEach((button) => {
+-    button.addEventListener('click', () => {
+-      const direction = button.dataset.slide === 'next' ? 1 : -1;
+-      index = (index + direction + slides.length) % slides.length;
+-      updateSlides();
++const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
++if (reducedMotion) {
++  document.querySelectorAll('.reveal').forEach((element) => element.classList.add('visible'));
++} else {
++  const observer = new IntersectionObserver((entries) => {
++    entries.forEach((entry) => {
++      if (entry.isIntersecting) {
++        entry.target.classList.add('visible');
++        observer.unobserve(entry.target);
++      }
+     });
+-  });
+-
+-  updateSlides();
+-});
++  }, { threshold: 0.12 });
++  document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
++}
