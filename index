@@ -1,0 +1,295 @@
+diff --git a/index.html b/index.html
+index 1dbe246bfc137e413d97167f7f79f294d0235613..0bfdef25ac5359b79a82945994f3103b860da3b0 100644
+--- a/index.html
++++ b/index.html
+@@ -1,248 +1,64 @@
+-<!DOCTYPE html>
++<!doctype html>
+ <html lang="en">
+ <head>
+-  <meta charset="UTF-8" />
+-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+-  <title>Jake E. Torres | Portfolio</title>
++  <meta charset="utf-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1">
++  <meta name="description" content="Lions Motorsports — Loyola Marymount University's Formula SAE team.">
++  <title>Lions Motorsports | LMU Formula SAE</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+-  <link rel="stylesheet" href="styles.css" />
++  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
++  <link rel="stylesheet" href="styles.css">
++  <script src="script.js" defer></script>
+ </head>
+ <body>
+-  <header class="hero" id="home">
+-    <nav class="nav">
+-      <div class="logo">JET</div>
+-      <ul class="nav-links">
+-        <li><a href="#about">About</a></li>
+-        <li><a href="#resume">Resume</a></li>
+-        <li><a href="#skills">Skills & Experience</a></li>
+-        <li><a href="projects.html">Projects</a></li>
+-        <li><a href="#contact">Contact</a></li>
+-      </ul>
++  <header class="site-header">
++    <a class="brand" href="index.html" aria-label="Lions Motorsports home"><span class="brand-mark">LM</span><span>Lions<br>Motorsports</span></a>
++    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Menu</span></button>
++    <nav id="site-nav" class="site-nav" aria-label="Main navigation">
++      <a class="active" href="index.html">Home</a><a href="subteams.html">Subteams</a><a href="partners.html">Partners</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a>
+     </nav>
+-    <div class="hero-content">
+-      <div class="hero-text">
+-        <p class="eyebrow">Mechanical Engineering Student · Loyola Marymount University</p>
+-        <h1 class="hero-name"><span class="hero-name-main">Jake E. Torres</span></h1>
+-        <p class="hero-subtitle">Portfolio</p>
+-      </div>
+-    </div>
+   </header>
+ 
+   <main>
+-  <section id="about" class="section">
+-    <div class="section-header">
+-      <h2>About Me</h2>
+-    </div>
+-
+-    <div class="about-grid">
+-      <div class="about-text">
+-        <p>
+-          Mechanical Engineering student at Loyola Marymount University (Class of 2027), with strong interests across multiple engineering fields including aerodynamics, design, and applied systems. President of LMU Formula SAE (2026-2027). Aerodynamics Lead of LMU’s Formula SAE team (2024-2025), experienced in CAD, CFD, and project leadership. Proficient in SolidWorks, MATLAB, and GD&T, with proven strengths in teamwork, problem-solving, and technical design.
+-        </p>
+-
+-        <p>
+-          I split my time between the San Francisco Bay Area and Los Angeles, giving me opportunities to connect with diverse engineering and professional communities. Outside of academics, I love to work out, cook, and explore new challenges, with personal interests in sports, aviation, racing, and hands-on projects. These passions keep me curious, active, and driven to continue growing both inside and outside the classroom.
+-        </p>
+-      </div>
+-
+-      <div class="about-card">
+-        <img
+-          class="avatar-img"
+-          src="profilepicgithub.png"
+-          alt="Portrait of Jake E. Torres"
+-        />
++    <section class="hero">
++      <div class="hero-media placeholder" role="img" aria-label="Placeholder for a photo of the Formula SAE car"><span>HERO IMAGE<br><small>Team car on track</small></span></div>
++      <div class="hero-overlay"></div>
++      <div class="hero-copy reveal">
++        <p class="kicker">Loyola Marymount University</p>
++        <h1>We engineer<br><em>the next lap.</em></h1>
++        <p>Student-built. Competition-driven. One team taking an electric idea from first sketch to finish line.</p>
++        <div class="button-row"><a class="button button-primary" href="subteams.html">Meet the team <span>↗</span></a><a class="button button-ghost" href="contact.html">Join us</a></div>
+       </div>
+-    </div>
+-  </section>
+-
+-<section id="resume" class="section alt">
+-  <div class="section-header">
+-    <h2>Resume</h2>
+-  </div>
+-
+-  <div class="resume-panel">
+-    <div class="resume-actions">
+-      <p class="muted">View or download my full resume below.</p>
+-
+-      <a
+-        class="btn"
+-        href="resume2026.pdf"
+-        target="_blank"
+-        rel="noreferrer"
+-      >
+-        Open Full PDF
+-      </a>
+-
+-      <a
+-        class="btn"
+-        href="resume2026.pdf"
+-        download
+-      >
+-        Download PDF
+-      </a>
+-    </div>
+-
+-    <div class="resume-viewer">
+-      <embed
+-        src="resume2026.pdf"
+-        type="application/pdf"
+-      />
+-    </div>
+-  </div>
+-</section>
+-
+-
+-    <section id="skills" class="section">
+-      <div class="section-header">
+-        <h2>Skills & Experience</h2>
+-      </div>
+-      <div class="skills-grid">
+-        <article class="experience-card">
+-          <div class="upload-block">
+-  <div class="upload-preview">
+-    <img class="skill-logo" src="serra_logo.png" alt="Junipero Serra High School logo" />
+-  </div>
+-</div>
+-          <div class="experience-text">
+-            <strong>Junipero Serra High School</strong>
+-            <ul>
+-              <li>4.0 GPA Student</li>
+-              <li>Principle's List All Semester's HS Career</li>
+-              <li>Student Ambassador (2021-2023)</li>
+-              <li>Co-Founder Serra Aviation Club</li>
+-              <li>National Honor Society Member</li>
+-              <li>National Honor Society Service Chair</li>
+-              <li>Varsity Baseball Team Captain</li>
+-              <li>Outstanding Student Award (2022)</li>
+-              <li>Tom Thompson San Mateo Rotary Club Scholarship</li>
+-              <li>California Scholarship Federation Awardee</li>
+-            </ul>
+-          </div>
+-        </article>
+-
+-        <article class="experience-card">
+-        <div class="upload-block">
+-  <div class="upload-preview">
+-    <img class="skill-logo" src="lmu_logo.png" alt="Loyola Marymount University logo" />
+-  </div>
+-</div>
+-
+-          <div class="experience-text">
+-            <strong>Loyola Marymount University</strong>
+-            <ul>
+-              <li>Co-Founder of Lions Motorsports Formula SAE</li>
+-              <li>President of Lions Motorsports Formula SAE (2026-2027)</li>
+-              <li>Team Leader of Aerodynamics Team (2025-2026)</li>
+-              <li>Member of LMU Additive Manufacturing Club</li>
+-              <li>Member of Sigma Phi Epsilon</li>
+-            </ul>
+-          </div>
+-        </article>
+-
+-        <article class="experience-card">
+-          <div class="upload-block">
+-            <div class="upload-block">
+-  <div class="upload-preview">
+-    <img class="skill-photo" src="rotarypic.png" alt="Photo of Jake E. Torres" />
+-  </div>
+-</div>
++      <div class="scroll-cue">Scroll to explore <span>↓</span></div>
++    </section>
+ 
+-          <div class="experience-text">
+-            <strong>Skills Learned</strong>
+-            <div class="skill-group">
+-              <p class="skill-label">Non-Technical</p>
+-              <p class="skill-items">Public Speaking · Teamwork · Leadership · Collaboration · Problem Solving · Critical Thinking · Responsibility</p>
+-            </div>
+-            <div class="skill-group">
+-              <p class="skill-label">Technical</p>
+-              <p class="skill-items">SolidWorks · GD&T · AutoCAD · Prototyping / Design · Additive Manufacturing (3D Printing) · MATLAB</p>
+-            </div>
+-          </div>
+-        </article>
++    <section class="intro section-pad">
++      <div class="section-label">01 / Who we are</div>
++      <div class="intro-grid reveal">
++        <h2>More than a car.<br><span>A proving ground.</span></h2>
++        <div><p class="lead">Lions Motorsports is LMU's Formula SAE team: a multidisciplinary group designing, manufacturing, testing, and racing a formula-style vehicle.</p><p>We bring classroom fundamentals into the real world—balancing performance, reliability, cost, and collaboration under competition deadlines.</p><a class="text-link" href="subteams.html">Explore our subteams <span>→</span></a></div>
+       </div>
++      <div class="stats reveal"><div><strong>01</strong><span>Shared mission</span></div><div><strong>06</strong><span>Core subteams</span></div><div><strong>100%</strong><span>Student built</span></div></div>
+     </section>
+ 
+-    <section id="courses" class="section">
+-  <div class="section-header">
+-    <h2>Relevant Courses Taken</h2>
+-  </div>
+-
+-  <div class="courses-container">
+-    <ul class="courses-list">
+-   <!-- Math & Analytical Foundations -->
+-  <li><strong>Mathematics & Analysis:</strong></li>
+-  <li>Calculus 1</li>
+-  <li>Calculus 2</li>
+-  <li>Calculus 3</li>
+-  <li>Differential Equations & Linear Algebra</li>
+-
+-  <!-- Science Foundations -->
+-  <li><strong>Science Foundations:</strong></li>
+-  <li>General Chemistry 1</li>
+-  <li>General Chemistry Lab 1</li>
+-  <li>Biology for Engineers</li>
+-  <li>Physics 1 Mechanics</li>
+-  <li>Physics 2 Electromagnetism</li>
+-
+-  <!-- Engineering Core -->
+-  <li><strong>Engineering Core:</strong></li>
+-  <li>Intro to Engineering Analysis</li>
+-  <li>Engineering Visualization</li>
+-  <li>Statics</li>
+-  <li>Dynamics & Controls 1</li>
+-  <li>Dynamics & Controls 2</li>
+-  <li>Mechanics of Materials</li>
+-  <li>Thermodynamics</li>
+-  <li>Fluid Mechanics</li>
+-  <li>Heat Transfer</li>
+-  <li>Machine Design</li>
+-
+-  <!-- Design & Manufacturing -->
+-  <li><strong>Design & Manufacturing:</strong></li>
+-  <li>Design & Manufacturing</li>
+-  <li>Materials Science</li>
+-
+-  <!-- Labs & Applied Engineering -->
+-  <li><strong>Labs & Applied Engineering:</strong></li>
+-  <li>Mechanical Engineering Lab 1</li>
+-  <li>Mechanical Engineering Lab 2</li>
+-  <li>Mechanical Engineering Lab 3</li>
+-  <li>Instrumentation & Magnetism (Circuits)</li>
+-
+-  <!-- Computational & Interdisciplinary -->
+-  <li><strong>Computational & Interdisciplinary:</strong></li>
+-  <li>Computational Engineering (Matlab)</li>
+-  <li>Artificial Intelligence Innovations for Global Economy</li>
+-       </ul>
+-  </div>
+-</section>
+-
+-    <section id="projects" class="section alt">
+-      <div class="section-header">
+-        <h2>Projects</h2>
+-      </div>
+-      <div class="project-index-card project-index-cta">
+-        <a href="projects.html">View the full projects index</a>
+-      </div>
++    <section class="feature-band">
++      <div class="feature-image placeholder" role="img" aria-label="Placeholder for workshop photo"><span>WORKSHOP IMAGE</span></div>
++      <div class="feature-copy reveal"><p class="kicker">Built at LMU</p><h2>Design.<br>Build.<br><em>Compete.</em></h2><p>Every component creates a new challenge. Our members learn by doing, iterate with purpose, and grow together through engineering.</p><a class="button button-light" href="gallery.html">See the build</a></div>
+     </section>
+ 
+-    <section id="contact" class="section">
+-      <div class="section-header">
+-        <h2>Contact</h2>
+-      </div>
+-      <div class="contact-buttons">
+-        <a class="btn primary" href="https://www.linkedin.com/in/jake-e-torres-a6591a296/" target="_blank" rel="noreferrer">LinkedIn</a>
+-        <a class="btn primary" href="mailto:jet2sfo@gmail.com">Gmail</a>
+-        <a class="btn primary" href="mailto:jtorre62@lion.lmu.edu">Outlook</a>
++    <section class="events section-pad">
++      <div class="section-heading reveal"><div><div class="section-label">02 / Mark your calendar</div><h2>Upcoming events<br>&amp; meetings</h2></div><p>Meet the team, see what we are building, and find your place in the garage.</p></div>
++      <div class="event-list reveal">
++        <article class="event"><div class="date"><b>28</b><span>Aug<br>2026</span></div><div class="event-info"><p class="tag">Campus event</p><h3>Seaver Club Fair</h3><p>LMU Life Sciences Building</p></div><time>1:00 PM — 3:00 PM</time></article>
++        <article class="event"><div class="date"><b>29</b><span>Aug<br>2026</span></div><div class="event-info"><p class="tag">Campus event</p><h3>Student Involvement Fair</h3><p>LMU Alumni Mall</p></div><time>5:00 PM — 7:30 PM</time></article>
++        <article class="event"><div class="date"><b>18–19</b><span>Sep<br>2026</span></div><div class="event-info"><p class="tag">Team event</p><h3>FSAE Teach, Tech, Tune</h3><p>Willow Springs Raceway</p></div><time>All day</time></article>
++        <article class="event event-muted"><div class="date"><b>—</b><span>Date<br>TBD</span></div><div class="event-info"><p class="tag">General meeting</p><h3>First General Meeting</h3><p>Location to be announced</p></div><time>Time TBD</time></article>
+       </div>
+     </section>
+-  </main>
+ 
+-  <footer class="footer">
+-    <p>Thank you — Jake E. Torres</p>
+-  </footer>
+-  <script src="script.js"></script>
++    <section class="cta"><p class="kicker">Ready to get started?</p><h2>Help us build<br>what's next.</h2><a class="button button-light" href="contact.html">Get involved <span>↗</span></a></section>
++  </main>
++  <footer class="footer"><a class="brand" href="index.html"><span class="brand-mark">LM</span><span>Lions<br>Motorsports</span></a><p>LMU Formula SAE<br>Los Angeles, California</p><div><a href="subteams.html">Subteams</a><a href="partners.html">Partners</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div><small>© <span data-year></span> Lions Motorsports</small></footer>
+ </body>
+ </html>
