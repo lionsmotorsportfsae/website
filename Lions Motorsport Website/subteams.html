@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subteams — Lions Motorsport FSAE</title>
+<link rel="icon" type="image/png" href="lions-symbol.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#06090f;
+    --ink-soft:#0d1420;
+    --blue:#6bafdf;
+    --blue-deep:#3f7fac;
+    --red:#d93629;
+    --red-deep:#a5271d;
+    --off:#f5f4f0;
+    --line: rgba(245,244,240,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ink); color:var(--off); font-family:'IBM Plex Sans',sans-serif; line-height:1.6; overflow-x:hidden;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
+
+  /* speed stripe: signature three-color motif, matches the flag in the lion's mouth */
+  .stripes{display:flex; height:8px;}
+  .stripes span{flex:1;}
+  .stripes span:nth-child(1){background:var(--blue);}
+  .stripes span:nth-child(2){background:var(--red);}
+  .stripes span:nth-child(3){background:var(--blue);}
+
+  /* NAV — symbol left, links right, per the UW reference */
+  header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(6,9,15,0.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:14px 32px; max-width:1240px; margin:0 auto;}
+  .nav-logo{display:flex; align-items:center; padding:6px; border-radius:8px; background:radial-gradient(circle, rgba(245,244,240,0.14) 0%, rgba(245,244,240,0) 72%);}
+  .nav-logo img{height:52px; width:auto;}
+  .nav-links{display:flex; align-items:center; gap:36px;}
+  .nav-links a{font-size:15px; font-weight:500; color:var(--off); opacity:0.85; position:relative; padding:4px 0;}
+  .nav-links a:hover{opacity:1;}
+  .nav-links a.active{opacity:1;}
+  .nav-links a.active::after{content:""; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--red);}
+  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:6px;}
+  .nav-toggle span{width:24px; height:2px; background:var(--off);}
+
+  /* HERO */
+  .hero{position:relative; min-height:100svh; display:flex; align-items:flex-end; justify-content:center; text-align:center; padding:120px 24px 90px; overflow:hidden;}
+  .hero-photo{position:absolute; inset:0; z-index:0;}
+  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 40%;}
+  .hero-scrim{position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(6,9,15,0.55) 0%, rgba(6,9,15,0.28) 30%, rgba(6,9,15,0.55) 68%, rgba(6,9,15,0.92) 100%);
+  }
+  .hero-inner{position:relative; z-index:2; max-width:1100px;}
+  .hero-wordmark{width:min(1040px, 92vw); margin:0 auto 40px;}
+  .hero-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn{display:inline-block; padding:15px 32px; font-size:15px; font-weight:600; border-radius:2px; border:1.5px solid transparent; transition:transform 0.15s ease, background 0.15s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-outline{border-color:var(--blue); color:var(--blue);}
+  .btn-outline:hover{border-color:var(--blue); background:rgba(107,175,223,0.1);}
+
+  @media (max-width: 760px){
+    .nav-links{position:fixed; top:70px; left:0; right:0; background:var(--ink-soft); flex-direction:column; align-items:flex-start; padding:20px 32px; gap:22px; border-bottom:1px solid var(--line); transform:translateY(-130%); transition:transform 0.25s ease;}
+    .nav-links.open{transform:translateY(0);}
+    .nav-toggle{display:flex;}
+    .hero{padding-top:110px;}
+  }
+
+  /* STATS */
+  .stats{padding:64px 0;}
+  .stat-row{display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; text-align:center;}
+  .stat-num{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:56px; line-height:1; color:var(--off);}
+  .stat-label{margin-top:10px; font-size:15px; color:#9aa0ab;}
+
+  /* JOURNEY */
+  .journey{padding:96px 0;}
+  .journey-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
+  .journey-photo img{border-radius:4px; width:100%;}
+  .journey h2{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:44px; color:var(--off); margin-bottom:24px;}
+  .journey p{color:rgba(245,244,240,0.82); font-size:16px; margin-bottom:18px; max-width:520px;}
+  .journey .btn{margin-top:12px;}
+
+  @media (max-width: 900px){
+    .stat-row{grid-template-columns:repeat(2, 1fr); gap:36px 24px;}
+    .journey-grid{grid-template-columns:1fr; gap:36px;}
+    .journey-photo{order:2;}
+    .journey p{max-width:none;}
+  }
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line); padding:40px 0;}
+  .footer-row{display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  .footer-copy{font-size:14px; color:#9aa0ab;}
+  .footer-social{display:flex; align-items:center; gap:18px;}
+  .footer-social a{display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; opacity:0.75; transition:opacity 0.15s ease, background 0.15s ease;}
+  .footer-social a:hover{opacity:1; background:rgba(245,244,240,0.08);}
+  .footer-social img{width:19px; height:19px; filter:invert(1) brightness(1.15);}
+
+  @media (max-width: 600px){
+    .footer-row{flex-direction:column; text-align:center;}
+  }
+
+  /* SUBTEAMS PAGE */
+  .page-head{padding:150px 0 40px;}
+  .page-head h1{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:56px; color:var(--off);}
+
+  .subteams-section{padding:20px 0 100px;}
+  .subteams-layout{display:grid; grid-template-columns:230px 1fr; gap:48px; align-items:start;}
+
+  /* left index */
+  .subteam-index{position:sticky; top:110px; display:flex; flex-direction:column; align-items:center; gap:2px;}
+  .subteam-index button{
+    width:100%; text-align:center; background:none; border:0; cursor:pointer; color:#9aa0ab; font-family:'IBM Plex Sans',sans-serif;
+    font-size:15px; font-weight:500; padding:12px 18px; border-bottom:2px solid var(--line); transition:color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .subteam-index button:last-child{border-bottom:2px solid var(--line);}
+  .subteam-index button .idx-num{display:block; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#5a606b; margin-bottom:4px;}
+  .subteam-index button:hover{color:var(--off); background:rgba(245,244,240,0.04);}
+  .subteam-index button.active{color:var(--off); border-color:var(--red); background:rgba(217,54,41,0.08);}
+  .subteam-index button.active .idx-num{color:var(--red);}
+
+  /* viewer */
+  .subteam-viewer{display:flex; align-items:center; gap:18px;}
+  .st-arrow{
+    flex:0 0 auto; width:44px; height:44px; border-radius:50%; border:1.5px solid var(--line); background:none; color:var(--off);
+    font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color 0.15s ease, background 0.15s ease;
+  }
+  .st-arrow:hover{border-color:var(--blue); background:rgba(107,175,223,0.08);}
+  .st-arrow:disabled{opacity:0.3; cursor:default;}
+  .st-arrow:disabled:hover{border-color:var(--line); background:none;}
+
+  .subteam-content{flex:1; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; min-height:420px;}
+  .subteam-text .st-count{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--blue); margin-bottom:14px;}
+  .subteam-text h2{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:42px; color:var(--off); margin-bottom:18px;}
+  .subteam-text p{color:rgba(245,244,240,0.82); font-size:16px; max-width:480px;}
+
+  .subteam-media{aspect-ratio:16/9; border-radius:4px; border:1px solid var(--line); background:var(--ink-soft); overflow:hidden;}
+  .subteam-media img{width:100%; height:100%; object-fit:contain; object-position:center;}
+
+  @media (max-width: 900px){
+    .page-head h1{font-size:40px;}
+    .subteams-layout{grid-template-columns:1fr;}
+    .subteam-index{position:static; flex-direction:row; flex-wrap:wrap; justify-content:center; padding-bottom:8px;}
+    .subteam-index button{width:auto; flex:0 0 auto;}
+    .subteam-content{grid-template-columns:1fr; gap:28px;}
+    .subteam-viewer{align-items:flex-start;}
+    .st-arrow{margin-top:170px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="Lions Motorsport home">
+      <img src="lions-symbol.png" alt="Lions Motorsport symbol">
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="subteams.html" class="active">Subteams</a>
+      <a href="partners.html">Partners</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-head">
+  <div class="wrap">
+    <h1>Subteams</h1>
+  </div>
+</section>
+
+<div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<section class="subteams-section">
+  <div class="wrap subteams-layout">
+
+    <nav class="subteam-index" id="subteamIndex" aria-label="Subteam navigation"></nav>
+
+    <div class="subteam-viewer">
+      <button class="st-arrow" id="stPrev" aria-label="Previous subteam">&larr;</button>
+
+      <div class="subteam-content">
+        <div class="subteam-text">
+          <div class="st-count" id="stCount"></div>
+          <h2 id="stName"></h2>
+          <p id="stDesc"></p>
+        </div>
+        <div class="subteam-media">
+          <img id="stImage" src="" alt="">
+        </div>
+      </div>
+
+      <button class="st-arrow" id="stNext" aria-label="Next subteam">&rarr;</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const subteams = [
+    { slug: "chassis", name: "Chassis", img: "subteam-chassis.jpg", desc: "The Chassis team designs and builds the structural frame of the vehicle, balancing safety, stiffness, and weight. Members use CAD and FEA to evaluate the frame before manufacturing. The team handles tube preparation, welding, assembly, and fitment while ensuring the chassis meets FSAE regulations." },
+    { slug: "drivetrain", name: "Drivetrain", img: "subteam-drivetrain.jpg", desc: "The Drivetrain team develops and maintains the systems responsible for producing and transferring power to the wheels. Members work on the engine, intake, cooling, clutch, shifting, and final-drive systems. The team manufactures, assembles, tunes, and tests these components to improve reliability and performance." },
+    { slug: "vehicle-dynamics", name: "Vehicle Dynamics", img: "subteam-vehicle-dynamics.jpg", desc: "The Vehicle Dynamics team develops the systems that determine how the car handles, steers, brakes, and responds on track. Members work with suspension geometry, steering, springs, dampers, wheels, and vehicle setup. The team manufactures and assembles components while performing alignment, setup, and track testing." },
+    { slug: "aerodynamics", name: "Aerodynamics", img: "subteam-aerodynamics.jpg", desc: "The Aerodynamics team develops the vehicle's bodywork and aerodynamic package to improve airflow, downforce, and stability. Members use CAD and CFD to evaluate designs before manufacturing components with composite materials. The team also performs fitment and testing to refine the final aero package." },
+    { slug: "data-acquisition", name: "Data Acquisition", img: "subteam-data-acquisition.jpg", desc: "The Data Acquisition team collects and analyzes information from sensors throughout the vehicle. Members work with sensors, wiring, data logging, and basic vehicle telemetry to measure how the car performs during testing. This data helps other subteams validate designs, diagnose issues, and improve performance." },
+    { slug: "driver-ergonomics", name: "Driver Ergonomics", img: "subteam-driver-ergonomics.jpg", desc: "The Driver Ergonomics team focuses on how the driver fits, controls, and interacts with the vehicle. Members develop the seat, steering system, pedals, restraints, and cockpit layout while considering safety and FSAE requirements. The team manufactures and adjusts these components through driver fitment and egress testing." },
+    { slug: "finance", name: "Finance", img: "subteam-finance.jpg", desc: "The Finance team manages the funding and financial planning needed to support the design, manufacturing, testing, and competition of the vehicle. Members create budgets, track expenses, coordinate purchasing, and support fundraising and sponsorship efforts. Their work ensures each subteam can operate within the team's available resources." },
+    { slug: "marketing-film", name: "Marketing & Film", img: "subteam-marketing-film.jpg", desc: "The Marketing & Film team manages the branding, media, and public presence of Lions Motorsport. Members create photography, video, social media, graphics, sponsor materials, and promotional content while documenting the vehicle development process. The team also supports recruitment, events, fundraising, and sponsor outreach to grow the program." }
+  ];
+
+  let current = 0;
+
+  const indexNav = document.getElementById('subteamIndex');
+  const stCount = document.getElementById('stCount');
+  const stName = document.getElementById('stName');
+  const stDesc = document.getElementById('stDesc');
+  const stImage = document.getElementById('stImage');
+  const prevBtn = document.getElementById('stPrev');
+  const nextBtn = document.getElementById('stNext');
+
+  subteams.forEach((team, i) => {
+    const btn = document.createElement('button');
+    btn.innerHTML = `<span class="idx-num">${String(i + 1).padStart(2, '0')}</span>${team.name}`;
+    btn.addEventListener('click', () => render(i, true));
+    indexNav.appendChild(btn);
+  });
+
+  function render(i, updateHash) {
+    current = i;
+    const team = subteams[current];
+    stCount.textContent = `${String(current + 1).padStart(2, '0')} / ${String(subteams.length).padStart(2, '0')}`;
+    stName.textContent = team.name;
+    stDesc.textContent = team.desc;
+    stImage.src = team.img;
+    stImage.alt = `${team.name} subteam`;
+    [...indexNav.children].forEach((btn, idx) => btn.classList.toggle('active', idx === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === subteams.length - 1;
+    if (updateHash) {
+      history.replaceState(null, '', `#${team.slug}`);
+    }
+  }
+
+  prevBtn.addEventListener('click', () => { if (current > 0) render(current - 1, true); });
+  nextBtn.addEventListener('click', () => { if (current < subteams.length - 1) render(current + 1, true); });
+
+  // deep-link support — e.g. subteams.html#chassis, linked from the homepage or shared directly
+  const startSlug = location.hash.replace('#', '');
+  const startIndex = subteams.findIndex(t => t.slug === startSlug);
+  render(startIndex > -1 ? startIndex : 0, false);
+</script>
+
+<div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="footer-copy">&copy; 2026 Lions Motorsport &mdash; LMU Formula SAE</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/lionsmotorsport/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="social-instagram.png" alt="Instagram">
+      </a>
+      <a href="https://www.linkedin.com/company/lionsmotorsport/posts/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <img src="social-linkedin.png" alt="LinkedIn">
+      </a>
+      <a href="mailto:lionsmotorsportfsae@gmail.com" aria-label="Email">
+        <img src="social-email.png" alt="Email">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+</script>
+
+</body>
+</html>
