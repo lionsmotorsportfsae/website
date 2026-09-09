@@ -4,10 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lions Motorsport — LMU Formula SAE</title>
+
 <link rel="icon" type="image/png" href="lions-symbol.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
 <style>
+
   :root{
     --ink:#06090f;
     --ink-soft:#0d1420;
@@ -16,105 +20,549 @@
     --red:#d93629;
     --red-deep:#a5271d;
     --off:#f5f4f0;
-    --line: rgba(245,244,240,0.14);
+    --line:rgba(245,244,240,0.14);
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--ink); color:var(--off); font-family:'IBM Plex Sans',sans-serif; line-height:1.6; overflow-x:hidden;}
-  a{color:inherit; text-decoration:none;}
-  img{display:block; max-width:100%;}
-  .wrap{max-width:1240px; margin:0 auto; padding:0 32px;}
 
-  /* speed stripe: signature three-color motif, matches the flag in the lion's mouth */
-  .stripes{display:flex; height:8px;}
-  .stripes span{flex:1;}
-  .stripes span:nth-child(1){background:var(--blue);}
-  .stripes span:nth-child(2){background:var(--red);}
-  .stripes span:nth-child(3){background:var(--blue);}
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
 
-  /* NAV — symbol left, links right, per the UW reference */
-  header{position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(6,9,15,0.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
-  nav{display:flex; align-items:center; justify-content:space-between; padding:14px 32px; max-width:1240px; margin:0 auto;}
-  .nav-logo{display:flex; align-items:center; padding:6px; border-radius:8px; background:radial-gradient(circle, rgba(245,244,240,0.14) 0%, rgba(245,244,240,0) 72%);}
-  .nav-logo img{height:52px; width:auto;}
-  .nav-links{display:flex; align-items:center; gap:36px;}
-  .nav-links a{font-size:15px; font-weight:500; color:var(--off); opacity:0.85; position:relative; padding:4px 0;}
-  .nav-links a:hover{opacity:1;}
-  .nav-links a.active{opacity:1;}
-  .nav-links a.active::after{content:""; position:absolute; left:0; right:0; bottom:-4px; height:2px; background:var(--red);}
-  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer; padding:6px;}
-  .nav-toggle span{width:24px; height:2px; background:var(--off);}
+  html{
+    scroll-behavior:smooth;
+  }
+
+  body{
+    background:var(--ink);
+    color:var(--off);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{
+    color:inherit;
+    text-decoration:none;
+  }
+
+  img{
+    display:block;
+    max-width:100%;
+  }
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+
+  /* SPEED STRIPES */
+
+  .stripes{
+    display:flex;
+    height:8px;
+  }
+
+  .stripes span{
+    flex:1;
+  }
+
+  .stripes span:nth-child(1){
+    background:var(--blue);
+  }
+
+  .stripes span:nth-child(2){
+    background:var(--red);
+  }
+
+  .stripes span:nth-child(3){
+    background:var(--blue);
+  }
+
+
+  /* NAV */
+
+  header{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    background:rgba(6,9,15,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 32px;
+    max-width:1240px;
+    margin:0 auto;
+  }
+
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    padding:6px;
+    border-radius:8px;
+    background:radial-gradient(
+      circle,
+      rgba(245,244,240,0.14) 0%,
+      rgba(245,244,240,0) 72%
+    );
+  }
+
+  .nav-logo img{
+    height:52px;
+    width:auto;
+  }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:36px;
+  }
+
+  .nav-links a{
+    font-size:15px;
+    font-weight:500;
+    color:var(--off);
+    opacity:0.85;
+    position:relative;
+    padding:4px 0;
+  }
+
+  .nav-links a:hover{
+    opacity:1;
+  }
+
+  .nav-links a.active{
+    opacity:1;
+  }
+
+  .nav-links a.active::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-4px;
+    height:2px;
+    background:var(--red);
+  }
+
+  .nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:0;
+    cursor:pointer;
+    padding:6px;
+  }
+
+  .nav-toggle span{
+    width:24px;
+    height:2px;
+    background:var(--off);
+  }
+
 
   /* HERO */
-  .hero{position:relative; min-height:100svh; display:flex; align-items:flex-end; justify-content:center; text-align:center; padding:120px 24px 90px; overflow:hidden;}
-  .hero-photo{position:absolute; inset:0; z-index:0;}
-  .hero-photo img{width:100%; height:100%; object-fit:cover; object-position:center 40%;}
-  .hero-scrim{position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg, rgba(6,9,15,0.55) 0%, rgba(6,9,15,0.28) 30%, rgba(6,9,15,0.55) 68%, rgba(6,9,15,0.92) 100%);
-  }
-  .hero-inner{position:relative; z-index:2; max-width:1100px;}
-  .hero-wordmark{width:min(1040px, 92vw); margin:0 auto 40px;}
-  .hero-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
-  .btn{display:inline-block; padding:15px 32px; font-size:15px; font-weight:600; border-radius:2px; border:1.5px solid transparent; transition:transform 0.15s ease, background 0.15s ease;}
-  .btn:hover{transform:translateY(-2px);}
-  .btn-outline{border-color:var(--blue); color:var(--blue);}
-  .btn-outline:hover{border-color:var(--blue); background:rgba(107,175,223,0.1);}
 
-  @media (max-width: 760px){
-    .nav-links{position:fixed; top:70px; left:0; right:0; background:var(--ink-soft); flex-direction:column; align-items:flex-start; padding:20px 32px; gap:22px; border-bottom:1px solid var(--line); transform:translateY(-130%); transition:transform 0.25s ease;}
-    .nav-links.open{transform:translateY(0);}
-    .nav-toggle{display:flex;}
-    .hero{padding-top:110px;}
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    text-align:center;
+    padding:120px 24px 90px;
+    overflow:hidden;
   }
+
+  .hero-photo{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center 40%;
+  }
+
+  .hero-scrim{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(
+      180deg,
+      rgba(6,9,15,0.55) 0%,
+      rgba(6,9,15,0.28) 30%,
+      rgba(6,9,15,0.55) 68%,
+      rgba(6,9,15,0.92) 100%
+    );
+  }
+
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:1100px;
+  }
+
+  .hero-wordmark{
+    width:min(1040px, 92vw);
+    margin:0 auto 40px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:15px 32px;
+    font-size:15px;
+    font-weight:600;
+    border-radius:2px;
+    border:1.5px solid transparent;
+    transition:
+      transform 0.15s ease,
+      background 0.15s ease;
+  }
+
+  .btn:hover{
+    transform:translateY(-2px);
+  }
+
+  .btn-outline{
+    border-color:var(--blue);
+    color:var(--blue);
+  }
+
+  .btn-outline:hover{
+    border-color:var(--blue);
+    background:rgba(107,175,223,0.1);
+  }
+
 
   /* STATS */
-  .stats{padding:64px 0;}
-  .stat-row{display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; text-align:center;}
-  .stat-num{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:56px; line-height:1; color:var(--off);}
-  .stat-label{margin-top:10px; font-size:15px; color:#9aa0ab;}
-  .stat-item{display:block; border-radius:4px; transition:transform 0.15s ease;}
-  a.stat-item:hover{transform:translateY(-2px);}
-  a.stat-item:hover .stat-num{color:var(--blue); transition:color 0.15s ease;}
 
-  /* JOURNEY */
-  .journey{padding:96px 0;}
-  .journey-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;}
-  .journey-photo img{border-radius:4px; width:100%; display:block; margin:0 auto;}
-  .journey h2{font-family:'Big Shoulders Display', sans-serif; font-weight:800; font-size:44px; color:var(--off); margin-bottom:24px;}
-  .journey p{color:rgba(245,244,240,0.82); font-size:16px; margin-bottom:18px; max-width:520px;}
-  .journey .btn{margin-top:12px;}
-
-  @media (max-width: 900px){
-    .stat-row{grid-template-columns:repeat(2, 1fr); gap:36px 24px;}
-    .journey-grid{grid-template-columns:1fr; gap:36px;}
-    .journey-photo{order:2;}
-    .journey p{max-width:none;}
+  .stats{
+    padding:64px 0;
   }
+
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:24px;
+    text-align:center;
+  }
+
+  .stat-num{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:56px;
+    line-height:1;
+    color:var(--off);
+  }
+
+  .stat-label{
+    margin-top:10px;
+    font-size:15px;
+    color:#9aa0ab;
+  }
+
+  .stat-item{
+    display:block;
+    border-radius:4px;
+    transition:transform 0.15s ease;
+  }
+
+  a.stat-item:hover{
+    transform:translateY(-2px);
+  }
+
+  a.stat-item:hover .stat-num{
+    color:var(--blue);
+    transition:color 0.15s ease;
+  }
+
+
+  /* OUR JOURNEY */
+
+  .journey{
+    padding:96px 0;
+  }
+
+  .journey-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+
+  .journey-photo img{
+    border-radius:4px;
+    width:100%;
+    display:block;
+    margin:0 auto;
+  }
+
+  .journey h2{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:44px;
+    color:var(--off);
+    margin-bottom:24px;
+  }
+
+  .journey p{
+    color:rgba(245,244,240,0.82);
+    font-size:16px;
+    margin-bottom:18px;
+    max-width:520px;
+  }
+
+  .journey .btn{
+    margin-top:12px;
+  }
+
+
+  /* UPCOMING EVENTS */
+
+  .events{
+    padding:96px 0;
+    background:var(--ink-soft);
+    border-top:1px solid var(--line);
+  }
+
+  .events h2{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-weight:800;
+    font-size:44px;
+    color:var(--off);
+    margin-bottom:36px;
+  }
+
+  .events-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+  }
+
+  .event-card{
+    background:var(--ink);
+    border:1px solid var(--line);
+    border-left:4px solid var(--blue);
+    padding:28px 30px;
+    border-radius:3px;
+    transition:
+      transform 0.15s ease,
+      border-color 0.15s ease;
+  }
+
+  .event-card:hover{
+    transform:translateY(-3px);
+    border-color:rgba(107,175,223,0.45);
+    border-left-color:var(--red);
+  }
+
+  .event-name{
+    font-family:'Big Shoulders Display',sans-serif;
+    font-size:28px;
+    font-weight:800;
+    line-height:1.15;
+    color:var(--off);
+    margin-bottom:14px;
+  }
+
+  .event-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:14px;
+    font-weight:500;
+    color:var(--blue);
+    margin-bottom:16px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+
+  .event-detail{
+    font-size:15px;
+    color:rgba(245,244,240,0.78);
+    margin-top:5px;
+  }
+
+  .event-detail strong{
+    color:var(--off);
+    font-weight:600;
+  }
+
 
   /* FOOTER */
-  footer{border-top:1px solid var(--line); padding:40px 0;}
-  .footer-row{display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;}
-  .footer-copy{font-size:14px; color:#9aa0ab;}
-  .footer-social{display:flex; align-items:center; gap:18px;}
-  .footer-social a{display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; opacity:0.75; transition:opacity 0.15s ease, background 0.15s ease;}
-  .footer-social a:hover{opacity:1; background:rgba(245,244,240,0.08);}
-  .footer-social img{width:19px; height:19px; filter:invert(1) brightness(1.15);}
 
-  @media (max-width: 600px){
-    .footer-row{flex-direction:column; text-align:center;}
+  footer{
+    border-top:1px solid var(--line);
+    padding:40px 0;
   }
+
+  .footer-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+
+  .footer-copy{
+    font-size:14px;
+    color:#9aa0ab;
+  }
+
+  .footer-social{
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+
+  .footer-social a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    opacity:0.75;
+    transition:
+      opacity 0.15s ease,
+      background 0.15s ease;
+  }
+
+  .footer-social a:hover{
+    opacity:1;
+    background:rgba(245,244,240,0.08);
+  }
+
+  .footer-social img{
+    width:19px;
+    height:19px;
+    filter:invert(1) brightness(1.15);
+  }
+
+
+  /* TABLET */
+
+  @media (max-width:900px){
+
+    .stat-row{
+      grid-template-columns:repeat(2,1fr);
+      gap:36px 24px;
+    }
+
+    .journey-grid{
+      grid-template-columns:1fr;
+      gap:36px;
+    }
+
+    .journey-photo{
+      order:2;
+    }
+
+    .journey p{
+      max-width:none;
+    }
+
+  }
+
+
+  /* MOBILE */
+
+  @media (max-width:760px){
+
+    .nav-links{
+      position:fixed;
+      top:70px;
+      left:0;
+      right:0;
+      background:var(--ink-soft);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:20px 32px;
+      gap:22px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-130%);
+      transition:transform 0.25s ease;
+    }
+
+    .nav-links.open{
+      transform:translateY(0);
+    }
+
+    .nav-toggle{
+      display:flex;
+    }
+
+    .hero{
+      padding-top:110px;
+    }
+
+    .events-grid{
+      grid-template-columns:1fr;
+    }
+
+    .events{
+      padding:72px 0;
+    }
+
+  }
+
+
+  @media (max-width:600px){
+
+    .footer-row{
+      flex-direction:column;
+      text-align:center;
+    }
+
+  }
+
 </style>
 </head>
+
+
 <body>
 
+
+<!-- NAVIGATION -->
+
 <header>
+
   <nav>
+
     <a href="index.html" class="nav-logo" aria-label="Lions Motorsport home">
       <img src="lions-symbol.png" alt="Lions Motorsport symbol">
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
+
+    <button
+      class="nav-toggle"
+      id="navToggle"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
+
     <div class="nav-links" id="navLinks">
       <a href="index.html" class="active">Home</a>
       <a href="subteams.html">Subteams</a>
@@ -122,87 +570,340 @@
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
     </div>
+
   </nav>
+
 </header>
 
+
+<!-- HERO -->
+
 <section class="hero" id="home">
-  <div class="hero-photo" aria-hidden="true"><img src="hero-photo.jpg" alt=""></div>
-  <div class="hero-scrim" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-wordmark"><img src="hero-wordmark.png" alt="Lions Motorsport FSAE"></div>
-    <div class="hero-actions">
-      <a href="#join" class="btn btn-outline">Join the Team</a>
-      <a href="sponsorship-packet.pdf" target="_blank" rel="noopener" class="btn btn-outline">Partner With Us</a>
-    </div>
+
+  <div class="hero-photo" aria-hidden="true">
+    <img src="hero-photo.jpg" alt="">
   </div>
+
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+
+    <div class="hero-wordmark">
+      <img src="hero-wordmark.png" alt="Lions Motorsport FSAE">
+    </div>
+
+    <div class="hero-actions">
+
+      <a href="#join" class="btn btn-outline">
+        Join the Team
+      </a>
+
+      <a
+        href="sponsorship-packet.pdf"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-outline"
+      >
+        Partner With Us
+      </a>
+
+    </div>
+
+  </div>
+
 </section>
 
-<div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="stripes" aria-hidden="true">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+<!-- STATS -->
 
 <section class="stats">
+
   <div class="wrap stat-row">
+
     <div class="stat-item">
       <div class="stat-num">2025</div>
       <div class="stat-label">Established</div>
     </div>
+
     <div class="stat-item">
       <div class="stat-num">100+</div>
       <div class="stat-label">Members</div>
     </div>
+
     <a href="subteams.html" class="stat-item">
       <div class="stat-num">8</div>
       <div class="stat-label">Subteams</div>
     </a>
+
     <div class="stat-item">
       <div class="stat-num">100%</div>
       <div class="stat-label">Student built &amp; driven</div>
     </div>
+
   </div>
+
 </section>
 
-<div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<div class="stripes" aria-hidden="true">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+<!-- OUR JOURNEY -->
 
 <section class="journey" id="about">
+
   <div class="wrap journey-grid">
+
     <div class="journey-photo">
-      <img src="team-photo.jpg" alt="Lions Motorsport team working on the car in the pits">
+      <img
+        src="team-photo.jpg"
+        alt="Lions Motorsport team working on the car in the pits"
+      >
     </div>
+
     <div class="journey-copy">
+
       <h2>Our Journey</h2>
-      <p>Our journey began in 2025, when a group of engineering students united by a passion for innovation, motorsports, and competition set out to bring Formula SAE to Loyola Marymount University. Within our first year, we designed and built our first Formula SAE race car and successfully competed at Formula SAE Michigan in 2026.</p>
-      <p>Today, Lions Motorsport has grown to more than 100 members across engineering, business, marketing, and film. As we prepare to return to Michigan, we remain focused on advancing our car, strengthening our team, and becoming more competitive each season.</p>
-      <a href="subteams.html" class="btn btn-outline">Learn more →</a>
+
+      <p>
+        Our journey began in 2025, when a group of engineering students
+        united by a passion for innovation, motorsports, and competition
+        set out to bring Formula SAE to Loyola Marymount University.
+        Within our first year, we designed and built our first Formula SAE
+        race car and successfully competed at Formula SAE Michigan in 2026.
+      </p>
+
+      <p>
+        Today, Lions Motorsport has grown to more than 100 members across
+        engineering, business, marketing, and film. As we prepare to return
+        to Michigan, we remain focused on advancing our car, strengthening
+        our team, and becoming more competitive each season.
+      </p>
+
+      <a href="subteams.html" class="btn btn-outline">
+        Learn more →
+      </a>
+
     </div>
+
   </div>
+
 </section>
 
-<div class="stripes" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<!-- UPCOMING EVENTS -->
+
+<section class="events" id="events">
+
+  <div class="wrap">
+
+    <h2>Upcoming Events</h2>
+
+    <div class="events-grid">
+
+
+      <!-- EVENT 1 -->
+
+      <div class="event-card">
+
+        <div class="event-name">
+          Seaver Club Fair
+        </div>
+
+        <div class="event-date">
+          August 28, 2026
+        </div>
+
+        <div class="event-detail">
+          <strong>Location:</strong> Pereira Hall Quad
+        </div>
+
+        <div class="event-detail">
+          <strong>Time:</strong> 1 PM – 3 PM
+        </div>
+
+      </div>
+
+
+      <!-- EVENT 2 -->
+
+      <div class="event-card">
+
+        <div class="event-name">
+          Student Involvement Fair
+        </div>
+
+        <div class="event-date">
+          August 29, 2026
+        </div>
+
+        <div class="event-detail">
+          <strong>Location:</strong> Alumni Mall
+        </div>
+
+        <div class="event-detail">
+          <strong>Time:</strong> 5 PM – 7 PM
+        </div>
+
+      </div>
+
+
+      <!-- EVENT 3 -->
+
+      <div class="event-card">
+
+        <div class="event-name">
+          FSAE Test, Tune, &amp; Teach Event
+        </div>
+
+        <div class="event-date">
+          September 18–19, 2026
+        </div>
+
+        <div class="event-detail">
+          <strong>Location:</strong> Willow Springs Raceway, CA
+        </div>
+
+        <div class="event-detail">
+          <strong>Time:</strong> 8 AM – 7 PM
+        </div>
+
+      </div>
+
+
+      <!-- EVENT 4 -->
+
+      <div class="event-card">
+
+        <div class="event-name">
+          Lions Motorsport General Meeting 1
+        </div>
+
+        <div class="event-date">
+          Date TBD
+        </div>
+
+        <div class="event-detail">
+          <strong>Location:</strong> Engineering Lounge
+        </div>
+
+        <div class="event-detail">
+          <strong>Time:</strong> TBD
+        </div>
+
+      </div>
+
+
+      <!-- EVENT 5 -->
+
+      <div class="event-card">
+
+        <div class="event-name">
+          New Member Workshop
+        </div>
+
+        <div class="event-date">
+          October 3, 2026
+        </div>
+
+        <div class="event-detail">
+          <strong>Location:</strong> East Hall Garage
+        </div>
+
+        <div class="event-detail">
+          <strong>Time:</strong> TBD
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="stripes" aria-hidden="true">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+<!-- FOOTER -->
 
 <footer>
+
   <div class="wrap footer-row">
-    <div class="footer-copy">&copy; 2026 Lions Motorsport &mdash; LMU Formula SAE</div>
+
+    <div class="footer-copy">
+      &copy; 2026 Lions Motorsport &mdash; LMU Formula SAE
+    </div>
+
     <div class="footer-social">
-      <a href="https://www.instagram.com/lionsmotorsport/" target="_blank" rel="noopener" aria-label="Instagram">
+
+      <a
+        href="https://www.instagram.com/lionsmotorsport/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+      >
         <img src="social-instagram.png" alt="Instagram">
       </a>
-      <a href="https://www.linkedin.com/company/lionsmotorsport/posts/" target="_blank" rel="noopener" aria-label="LinkedIn">
+
+      <a
+        href="https://www.linkedin.com/company/lionsmotorsport/posts/"
+        target="_blank"
+        rel="noopener"
+        aria-label="LinkedIn"
+      >
         <img src="social-linkedin.png" alt="LinkedIn">
       </a>
-      <a href="mailto:lionsmotorsportfsae@gmail.com" aria-label="Email">
+
+      <a
+        href="mailto:lionsmotorsportfsae@gmail.com"
+        aria-label="Email"
+      >
         <img src="social-email.png" alt="Email">
       </a>
+
     </div>
+
   </div>
+
 </footer>
 
+
 <script>
+
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
+
   toggle.addEventListener('click', () => {
+
     const open = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
+
+    toggle.setAttribute(
+      'aria-expanded',
+      open
+    );
+
   });
+
 </script>
+
 
 </body>
 </html>
