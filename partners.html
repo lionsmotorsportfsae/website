@@ -114,14 +114,14 @@
 
   .sponsors-section{padding:60px 0 100px;}
   /* rows of three, centered, with identical spacing horizontally and vertically */
-  .sponsor-grid{--gap:28px; display:flex; flex-wrap:wrap; justify-content:center; gap:var(--gap);}
-  /* every card is the same shape, and every logo fills the same box inside it */
-  .sponsor-card{flex:0 0 calc((100% - 2 * var(--gap)) / 3); display:flex; align-items:center; justify-content:center; padding:24px; aspect-ratio:3 / 2;}
-  .sponsor-card img{width:100%; height:100%; object-fit:contain; object-position:center; display:block;}
+  .sponsor-grid{--gap:28px; --pad:24px; display:flex; flex-wrap:wrap; justify-content:center; gap:var(--gap);}
+  /* every box is exactly one third wide (minus gaps) and can never be stretched by a big image */
+  .sponsor-card{position:relative; flex:0 0 calc((100% - 2 * var(--gap)) / 3); min-width:0; aspect-ratio:3 / 2; overflow:hidden;}
+  /* each logo is pinned inside its box and scaled down to fit, centered */
+  .sponsor-card img{position:absolute; top:var(--pad); left:var(--pad); width:calc(100% - 2 * var(--pad)); height:calc(100% - 2 * var(--pad)); max-width:none; object-fit:contain; object-position:center;}
 
   @media (max-width: 760px){
-    .sponsor-grid{--gap:12px;}
-    .sponsor-card{padding:8px;}
+    .sponsor-grid{--gap:12px; --pad:8px;}
   }
 </style>
 </head>
