@@ -113,14 +113,14 @@
   .page-head .lede{color:rgba(245,244,240,0.78); font-size:17px; max-width:640px; margin:18px auto 0;}
 
   .sponsors-section{padding:60px 0 100px;}
-  /* always three per row, on every screen size */
-  .sponsor-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;}
+  /* rows of three, centered, with identical spacing horizontally and vertically */
+  .sponsor-grid{--gap:28px; display:flex; flex-wrap:wrap; justify-content:center; gap:var(--gap);}
   /* every card is the same shape, and every logo fills the same box inside it */
-  .sponsor-card{display:flex; align-items:center; justify-content:center; padding:24px; aspect-ratio:3 / 2;}
+  .sponsor-card{flex:0 0 calc((100% - 2 * var(--gap)) / 3); display:flex; align-items:center; justify-content:center; padding:24px; aspect-ratio:3 / 2;}
   .sponsor-card img{width:100%; height:100%; object-fit:contain; object-position:center; display:block;}
 
   @media (max-width: 760px){
-    .sponsor-grid{gap:12px;}
+    .sponsor-grid{--gap:12px;}
     .sponsor-card{padding:8px;}
   }
 </style>
